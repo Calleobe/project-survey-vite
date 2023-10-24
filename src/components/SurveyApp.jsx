@@ -130,11 +130,10 @@ export const SurveyApp = () => {
 
       {isAnswered() && <button onClick={handleNext}>Next</button>}
 
-      <Footer />
-
       {section === questions.length && (
         <Summary questions={questions} answers={answers} />
       )}
+      <Footer />
     </div>
   );
 };
