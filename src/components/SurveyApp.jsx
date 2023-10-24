@@ -10,7 +10,6 @@ import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import "../styles/SurveyApp.css";
 
-
 export const SurveyApp = () => {
   const [section, setSection] = useState(0); // Keeps track of which question is currently displayed
   const [answers, setAnswers] = useState({});
@@ -31,6 +30,16 @@ export const SurveyApp = () => {
       options: ["Yes", "No", "In progress"],
     },
     {
+      type: "radio",
+      text: "Have you sent your CV to brokers to gauge the market?",
+      options: ["Yes", "No", "Somewhat"],
+    },
+    {
+      type: "radio",
+      text: "Do you have a plan for managing bookkeeping?",
+      options: ["Yes", "No", "Somewhat"],
+    },
+    {
       type: "text",
       text: "Have you chosen a business name and set up a business account? (Please specify the name)",
     },
@@ -43,8 +52,17 @@ export const SurveyApp = () => {
         "Resignation ready",
         "Strategy for projects",
       ],
-    }
-    // ... You can add more questions as needed ...
+    },
+    {
+      type: "radio",
+      text: "Are you prepared for client interviews and contract negotiations?",
+      options: ["Yes", "No", "Somewhat"],
+    },
+    {
+      type: "radio",
+      text: "Do you have a portfolio demonstrating your JavaScript skills and completed projects?",
+      options: ["Yes", "No", "In progress"],
+    },
   ];
 
   const handleAnswerChange = (index, answer) => {
@@ -130,11 +148,10 @@ export const SurveyApp = () => {
 
       {isAnswered() && <button onClick={handleNext}>Next</button>}
 
-      <Footer />
-
       {section === questions.length && (
         <Summary questions={questions} answers={answers} />
       )}
+      <Footer />
     </div>
   );
 };
