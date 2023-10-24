@@ -31,6 +31,18 @@ button:hover {
   border-radius: 10px;
 }
 
+.MainHeader {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.MainFooter {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  font-size: 11px;
+}
+
 .Question {
   font-size: 24px;
   margin-bottom: 20px;
@@ -57,7 +69,8 @@ button:hover {
   height: 5px;
   background-color: #e0e0e0;
   margin-bottom: 20px;
-  border-radius: 3px;
+  border-radius: 5px;
+  
 }
 
 .ProgressBarInner {
