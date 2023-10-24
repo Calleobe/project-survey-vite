@@ -1,0 +1,77 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f7f7f7;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.SurveyContainer {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.Question {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.Answer {
+  margin-bottom: 20px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.QuestionContainer {
+  animation: fadeIn 0.5s;
+}
+
+.ProgressBar {
+  height: 5px;
+  background-color: #e0e0e0;
+  margin-bottom: 20px;
+  border-radius: 3px;
+}
+
+.ProgressBarInner {
+  height: 5px;
+  background-color: #007bff;
+  border-radius: 3px;
+}
+
+@media (max-width: 600px) {
+  .SurveyContainer {
+    margin: 20px 10px;
+  }
+
+  .Question {
+    font-size: 20px;
+  }
+}
