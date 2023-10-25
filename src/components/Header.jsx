@@ -3,10 +3,11 @@ import React from "react";
 const Header = () => {
   return (
     <header className="MainHeader">
-      <h1>Freelance Job Career Help</h1>
-      <p>This survey can give you an head-up of your current path 
-        towards a freelance job in Front-End Development! Answer to all the questions
-        and we can help you forward with your counceling.
+      <h1>JavaScript Freelance Readiness Check</h1>
+      <p>
+        Want to freelance in JavaScript and React? Let's assess where you stand.
+        Answer all questions, and we'll offer guidance tailored to your unique
+        career path. 🚀
       </p>
     </header>
   );

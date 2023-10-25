@@ -4,6 +4,7 @@ import { DropdownQuestion } from "./DropdownQuestion.jsx";
 import { TextInputQuestion } from "./TextInputQuestion.jsx";
 import { CheckboxQuestion } from "./CheckboxQuestion.jsx";
 import { RangeSliderQuestion } from "./RangeSliderQuestion.jsx";
+import { NewsletterQuestion } from "./NewsletterQuestion.jsx";
 import { Progress } from "./Progress";
 import { Summary } from "./Summary.jsx";
 import Header from "./Header.jsx";
@@ -62,6 +63,10 @@ export const SurveyApp = () => {
       type: "radio",
       text: "Do you have a portfolio demonstrating your JavaScript skills and completed projects?",
       options: ["Yes", "No", "In progress"],
+    },
+    {
+      type: "newsletter",
+      text: "Would you like to receive the latest tips, trends, and opportunities in the world of freelancing? Subscribe to our newsletter and stay ahead in your freelancing journey. Your success is our mission! 🚀",
     },
   ];
 
@@ -140,6 +145,18 @@ export const SurveyApp = () => {
                 question={question}
                 answer={answers[index]}
                 onAnswerChange={(answer) => handleAnswerChange(index, answer)}
+              />
+            )}
+            {question.type === "newsletter" && (
+              <NewsletterQuestion
+                questionText={question.text} // Pass the question text
+                answer={answers[index]}
+                onAnswerChange={(selection) => {
+                  handleAnswerChange(index, selection);
+                  if (selection === "Yes") {
+                    handleAnswerChange(index + "_email", email);
+                  }
+                }}
               />
             )}
           </div>
