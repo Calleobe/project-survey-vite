@@ -7,19 +7,51 @@ div {
   box-sizing: border-box;
 }
 
-button {
+/* Add space between Next and Previous buttons */
+.ButtonContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px; /* Adjust the margin as needed */
+}
+
+/* Style for the Previous button */
+.PreviousButton {
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 10px 15px;
+  padding: 8px 12px;
   cursor: pointer;
   transition: background-color 0.2s;
-  margin-top: 20px;
 }
 
-button:hover {
-  background-color: #0056b3;
+.PreviousButton:hover {
+  background-color: #429dff;
+}
+
+/* Style for the Next button */
+.NextButton {
+  background-color: #e0e0e0; /* Less bright color */
+  color: #777; /* Change the text color */
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+
+.NextButton:enabled {
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.NextButton:enabled:hover{
+  background-color: #429dff;
 }
 
 .SurveyContainer {
@@ -63,25 +95,20 @@ button:hover {
 
 .QuestionContainer {
   animation: fadeIn 0.5s;
+  margin-bottom: 10px; /* Add more spacing between questions on smaller screens */
 }
 
-.ProgressBar {
-  height: 5px;
-  background-color: #e0e0e0;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  
+/* Adjust font size for the selected value display on smaller screens */
+div.QuestionContainer p {
+  font-size: 14px;
 }
 
-.ProgressBarInner {
-  height: 5px;
-  background-color: #007bff;
-  border-radius: 3px;
-}
 
+/* Add responsive styles for smaller screens */
 @media (max-width: 600px) {
   .SurveyContainer {
     margin: 20px 10px;
+    padding: 10px;
   }
 
   .Question {

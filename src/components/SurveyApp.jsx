@@ -11,64 +11,66 @@ import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import "../styles/SurveyApp.css";
 
-export const SurveyApp = () => {
-  const [section, setSection] = useState(0); // Keeps track of which question is currently displayed
-  const [answers, setAnswers] = useState({});
 
-  const questions = [
-    {
-      type: "range",
-      text: "On a scale from 1 to 10, how would you rate your knowledge of JavaScript?",
-    },
-    {
-      type: "radio",
-      text: "Have you researched the freelance market for JavaScript programmers?",
-      options: ["Yes", "No", "Somewhat"],
-    },
-    {
-      type: "dropdown",
-      text: "Do you have a consultant CV tailored for JavaScript projects?",
-      options: ["Yes", "No", "In progress"],
-    },
-    {
-      type: "radio",
-      text: "Have you sent your CV to brokers to gauge the market?",
-      options: ["Yes", "No", "Somewhat"],
-    },
-    {
-      type: "radio",
-      text: "Do you have a plan for managing bookkeeping?",
-      options: ["Yes", "No", "Somewhat"],
-    },
-    {
-      type: "text",
-      text: "Have you chosen a business name and set up a business account? (Please specify the name)",
-    },
-    {
-      type: "checkbox",
-      text: "Which of these tasks have you completed?",
-      options: [
-        "Registered business",
-        "Aware of tax obligations",
-        "Resignation ready",
-        "Strategy for projects",
-      ],
-    },
-    {
-      type: "radio",
-      text: "Are you prepared for client interviews and contract negotiations?",
-      options: ["Yes", "No", "Somewhat"],
-    },
-    {
-      type: "radio",
-      text: "Do you have a portfolio demonstrating your JavaScript skills and completed projects?",
-      options: ["Yes", "No", "In progress"],
-    },
-    {
-      type: "newsletter",
-      text: "Would you like to receive the latest tips, trends, and opportunities in the world of freelancing? Subscribe to our newsletter and stay ahead in your freelancing journey. Your success is our mission! 🚀",
-    },
-  ];
+const questions = [
+  {
+    type: "range",
+    text: "On a scale from 1 to 10, how would you rate your knowledge of JavaScript?",
+  },
+  {
+    type: "radio",
+    text: "Have you researched the freelance market for JavaScript programmers?",
+    options: ["Yes", "No", "Somewhat"],
+  },
+  {
+    type: "dropdown",
+    text: "Do you have a consultant CV tailored for JavaScript projects?",
+    options: ["Yes", "No", "In progress"],
+  },
+  {
+    type: "radio",
+    text: "Have you sent your CV to brokers to gauge the market?",
+    options: ["Yes", "No", "Somewhat"],
+  },
+  {
+    type: "radio",
+    text: "Do you have a plan for managing bookkeeping?",
+    options: ["Yes", "No", "Somewhat"],
+  },
+  {
+    type: "text",
+    text: "Have you chosen a business name and set up a business account? (Please specify the name)",
+  },
+  {
+    type: "checkbox",
+    text: "Which of these tasks have you completed?",
+    options: [
+      "Registered business",
+      "Aware of tax obligations",
+      "Resignation ready",
+      "Strategy for projects",
+    ],
+  },
+  {
+    type: "radio",
+    text: "Are you prepared for client interviews and contract negotiations?",
+    options: ["Yes", "No", "Somewhat"],
+  },
+  {
+    type: "radio",
+    text: "Do you have a portfolio demonstrating your JavaScript skills and completed projects?",
+    options: ["Yes", "No", "In progress"],
+  },
+  {
+    type: "newsletter",
+    text: "Would you like to receive the latest tips, trends, and opportunities in the world of freelancing? Subscribe to our newsletter and stay ahead in your freelancing journey. Your success is our mission! 🚀",
+  },
+];
+
+export const SurveyApp = () => {
+  const [section, setSection] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const totalQuestions = questions.length;
 
   const handleAnswerChange = (index, answer) => {
     setAnswers((prev) => ({
@@ -77,25 +79,24 @@ export const SurveyApp = () => {
     }));
   };
 
-  const isAnswered = () => {
-    const currentQuestion = questions[section];
+  const isAnswered = (questionIndex) => {
+    return answers[questionIndex] !== undefined;
+  };
 
-    if (!currentQuestion) {
-      return false;
-    }
-
-    if (currentQuestion.type === "checkbox") {
-      return (
-        answers[section] && Object.values(answers[section]).some((val) => val)
-      );
-    }
-
-    return !!answers[section];
+  const canProceed = (questionIndex) => {
+    return isAnswered(questionIndex) || questionIndex === totalQuestions - 1;
   };
 
   const handleNext = () => {
-    // No need to check if it's the last question, just increment
-    setSection((prev) => prev + 1);
+    if (canProceed(section)) {
+      setSection((prev) => prev + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (section > 0) {
+      setSection((prev) => prev - 1);
+    }
   };
 
   return (
@@ -108,7 +109,7 @@ export const SurveyApp = () => {
       {questions.map((question, index) => (
         <div
           key={index}
-          className="QuestionContainer" // <-- This class is for the animation
+          className="QuestionContainer"
           style={{ display: section === index ? "block" : "none" }}
         >
           <div className="Answer">
@@ -149,7 +150,7 @@ export const SurveyApp = () => {
             )}
             {question.type === "newsletter" && (
               <NewsletterQuestion
-                questionText={question.text} // Pass the question text
+                questionText={question.text}
                 answer={answers[index]}
                 onAnswerChange={(selection) => {
                   handleAnswerChange(index, selection);
@@ -163,9 +164,22 @@ export const SurveyApp = () => {
         </div>
       ))}
 
-      {isAnswered() && <button onClick={handleNext}>Next</button>}
+      <div className="ButtonContainer">
+        {section > 0 && (
+          <button className="PreviousButton" onClick={handlePrevious}>
+            Previous
+          </button>
+        )}
+        <button
+          className="NextButton"
+          onClick={handleNext}
+          disabled={!canProceed(section)}
+        >
+          Next
+        </button>
+      </div>
 
-      {section === questions.length && (
+      {section === totalQuestions && (
         <Summary questions={questions} answers={answers} />
       )}
       <Footer />
