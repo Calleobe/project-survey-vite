@@ -40,7 +40,7 @@ export const NewsletterQuestion = ({
 
   return (
     <div>
-      <div>{questionText}</div> {/* Display the question text */}
+      <h3>{questionText}</h3> {/* Display the question text */}
       <div>
         <label>
           <input
