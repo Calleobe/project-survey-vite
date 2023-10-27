@@ -1,0 +1,28 @@
+.TextInputContainer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+.TextInputContainer label {
+    font-size: 18px; 
+    margin-bottom: 10px; 
+  }
+  
+/* Style for the text input (textarea) */
+.TextInputContainer textarea {
+    width: 70%; 
+    height: 30px; 
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px; 
+    font-size: 16px; 
+    resize: none;
+  }
+  
+/* Style for the input placeholder text */
+.TextInputContainer textarea::placeholder {
+    color: #888; 
+  }
+  
