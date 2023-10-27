@@ -10,7 +10,7 @@ export const CheckboxQuestion = ({ question, answer = [], onAnswerChange }) => {
 
   return (
     <div>
-      <p>{question.text}</p>
+      <h3>{question.text}</h3>
       {question.options.map((option, index) => (
         <div key={index}>
           <input

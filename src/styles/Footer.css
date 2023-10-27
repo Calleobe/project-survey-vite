@@ -1,0 +1,12 @@
+.MainFooter a {
+    text-decoration: none; 
+    color: black; 
+}
+
+.MainFooter a:hover {
+    text-decoration: underline;
+}
+
+.MainFooter a:active {
+    color: inherit;
+}

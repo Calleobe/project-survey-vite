@@ -3,7 +3,7 @@ import "../styles/TextInput.css";
 export const TextInputQuestion = ({ question, answer, onAnswerChange }) => {
   return (
     <div className="TextInputContainer"> {/* Add a container for styling */}
-      <label>{question.text}</label>
+      <h3>{question.text}</h3>
       <textarea
         value={answer || ""}
         onChange={(e) => onAnswerChange(e.target.value)}

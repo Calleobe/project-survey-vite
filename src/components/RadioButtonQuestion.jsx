@@ -1,7 +1,7 @@
 export const RadioButtonQuestion = ({ question, answer, onAnswerChange }) => {
   return (
     <div>
-      <h2>{question.text}</h2>
+      <h3>{question.text}</h3>
       {question.options.map((option) => (
         <label key={option}>
           <input
