@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/NewsletterQuestion.css";
 
 const emailValidation = (email) => {
   const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -9,38 +10,43 @@ export const NewsletterQuestion = ({
   questionText,
   answer,
   onAnswerChange,
+  storedEmail,
 }) => {
-  const [email, setEmail] = useState("");
+  const [emailState, setEmailState] = useState({
+    email: storedEmail || "",
+    isEmailValid: emailValidation(storedEmail || ""),
+    isSubmitted: false,
+  });
 
   const handleRadioChange = (selection) => {
+    // Reset isSubmitted when changing the answer
+    setEmailState((prevState) => ({
+      ...prevState,
+      isSubmitted: false,
+    }));
     onAnswerChange(selection);
-    if (selection === "No") {
-      setEmail("");
-    } else if (selection === "Yes" && email) {
-      // Also pass the email when "Yes" is selected and an email is available
-      onAnswerChange(email);
-    }
   };
 
-  const handleEmailChange = (e) => {
-    const updatedEmail = e.target.value;
-    setEmail(updatedEmail);
-
-    if (emailValidation(updatedEmail)) {
-      // Pass the email back to SurveyApp if it's valid
-      onAnswerChange(updatedEmail);
-    }
+  const handleEmailChange = (updatedEmail) => {
+    setEmailState((prevState) => ({
+      ...prevState,
+      email: updatedEmail,
+      isEmailValid: emailValidation(updatedEmail) || updatedEmail === "",
+    }));
   };
 
-  const handleEmailBlur = () => {
-    if (email && !emailValidation(email)) {
-      alert("Please enter a valid email address.");
+  const handleSubmission = () => {
+    if (!emailState.isSubmitted && emailState.isEmailValid) {
+      setEmailState((prevState) => ({
+        ...prevState,
+        isSubmitted: true,
+      }));
     }
   };
 
   return (
     <div>
-      <h3>{questionText}</h3> {/* Display the question text */}
+      <h3>{questionText}</h3>
       <div>
         <label>
           <input
@@ -61,19 +67,34 @@ export const NewsletterQuestion = ({
           No
         </label>
       </div>
-      {answer === "Yes" && (
+      {answer === "Yes" && !emailState.isSubmitted && (
         <div>
-          <label>
+          <label className="EmailLabel">
             Enter your email:
             <input
               type="text"
-              value={email}
-              onChange={handleEmailChange}
-              onBlur={handleEmailBlur}
+              value={emailState.email}
+              onChange={(e) => handleEmailChange(e.target.value)}
               placeholder="example@email.com"
+              className="InputEmail"
             />
           </label>
+          <button
+            onClick={handleSubmission}
+            disabled={!emailState.isEmailValid || emailState.email === ""}
+            style={{ marginTop: "10px" }}
+            className="SubmitButton"
+          >
+            Submit
+          </button>
+          {!emailState.isEmailValid && (
+            <p style={{ color: "red", marginLeft: "5px" }}>Please enter a valid email address.</p>
+          )}
         </div>
+        
+      )}
+      {emailState.isSubmitted && (
+        <p style={{ color: "green", marginLeft: "5px" }}>Successfully subscribed!</p>
       )}
     </div>
   );
