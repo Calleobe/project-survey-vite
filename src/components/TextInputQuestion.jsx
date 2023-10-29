@@ -1,11 +1,13 @@
+import "../styles/TextInput.css";
+
 export const TextInputQuestion = ({ question, answer, onAnswerChange }) => {
   return (
-    <div>
-      <label>{question.text}</label>
-      <input
-        type="text"
-        value={answer || ""} // Ensure it's always a string and never undefined
+    <div className="TextInputContainer"> {/* Add a container for styling */}
+      <h3>{question.text}</h3>
+      <textarea
+        value={answer || ""}
         onChange={(e) => onAnswerChange(e.target.value)}
+        placeholder="Write your business name here, required"
       />
     </div>
   );

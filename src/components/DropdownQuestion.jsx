@@ -1,7 +1,7 @@
 export const DropdownQuestion = ({ question, answer, onAnswerChange }) => {
   return (
     <div>
-      <h2>{question.text}</h2>
+      <h3>{question.text}</h3>
       <select
         value={answer || ""}
         onChange={(e) => onAnswerChange(e.target.value)}

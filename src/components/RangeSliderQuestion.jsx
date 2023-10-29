@@ -1,7 +1,9 @@
+import "../styles/RangerSlider.css";
+
 export const RangeSliderQuestion = ({ question, answer, onAnswerChange }) => {
   return (
-    <div>
-      <label>{question.text}</label>
+    <div className="RangeSliderContainer">
+      <h3>{question.text}</h3>
       <input
         type="range"
         min={0}
