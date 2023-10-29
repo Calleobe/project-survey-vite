@@ -19,11 +19,20 @@ export const NewsletterQuestion = ({
   });
 
   const handleRadioChange = (selection) => {
-    // Reset isSubmitted when changing the answer
-    setEmailState((prevState) => ({
-      ...prevState,
-      isSubmitted: false,
-    }));
+    // If changing answer to "No" after having submitted an email, reset submission
+    if (selection === "No" && emailState.isSubmitted) {
+      setEmailState({
+        email: "",
+        isEmailValid: false,
+        isSubmitted: false,
+      });
+    } else {
+      // Reset isSubmitted when changing the answer
+      setEmailState((prevState) => ({
+        ...prevState,
+        isSubmitted: false,
+      }));
+    }
     onAnswerChange(selection);
   };
 
@@ -41,6 +50,7 @@ export const NewsletterQuestion = ({
         ...prevState,
         isSubmitted: true,
       }));
+      onAnswerChange(emailState.email); // Call the callback with the valid email
     }
   };
 
@@ -88,13 +98,16 @@ export const NewsletterQuestion = ({
             Submit
           </button>
           {!emailState.isEmailValid && (
-            <p style={{ color: "red", marginLeft: "5px" }}>Please enter a valid email address.</p>
+            <p style={{ color: "red", marginLeft: "5px" }}>
+              Please enter a valid email address.
+            </p>
           )}
         </div>
-        
       )}
       {emailState.isSubmitted && (
-        <p style={{ color: "green", marginLeft: "5px" }}>Successfully subscribed!</p>
+        <p style={{ color: "green", marginLeft: "5px" }}>
+          Successfully subscribed!
+        </p>
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 body {
   font-family: "Arial", sans-serif;
-  background-color: #f7f7f7;
+  background-color: #dcdcdc;
 }
 
 div {
@@ -40,7 +40,6 @@ div {
   transition: background-color 0.2s;
 }
 
-
 .NextButton:enabled {
   background-color: #007bff;
   color: white;
@@ -50,8 +49,12 @@ div {
   transition: background-color 0.2s;
 }
 
-.NextButton:enabled:hover{
+.NextButton:enabled:hover {
   background-color: #429dff;
+}
+
+h1 {
+  font-size: 26px;
 }
 
 .SurveyContainer {
@@ -110,7 +113,7 @@ div.QuestionContainer p {
   border-radius: 5px;
   outline: none;
   width: 200px;
-};
+}
 
 /* Add responsive styles for smaller screens */
 @media (max-width: 600px) {

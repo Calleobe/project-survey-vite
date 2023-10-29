@@ -2,7 +2,7 @@
 
 Survey Project, PROJECT FIVE, by C. Öberg & F. Cassisa
 
-We made a Survey to check the readiness of future freelancer WebDev. By replying questions, we provide at the end not only a Summary but tips based on which replies they have given.
+We made a Survey to check the readiness of future freelancer in Javascript. By replying questions, we provide at the end not only a Summary but tips based on which replies they have given.
 
 This project has been tough on the logic aspect. There are different components passing data and logic that is intertwined among different elements.
 
@@ -13,3 +13,4 @@ After deciding what should have the Survey be based on, we structured the initia
 ### View it live
 
 Link to the project:
+https://project-survey.vercel.app/

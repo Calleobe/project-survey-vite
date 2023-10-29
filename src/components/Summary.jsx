@@ -23,15 +23,19 @@ export const Summary = ({ questions, answers }) => {
             <div key={index}>
               <strong>{question.text}</strong>:
               <ul>
-                {question.options.map((option) => (
-                  <li key={option}>
-                    {option}: {answers[index].includes(option) ? "Yes" : "No"}
-                    <br />{" "}
-                    {answers[index].includes(option)
-                      ? checkbox_suggestions[option]
-                      : checkbox_unchecked_suggestions[option]}
-                  </li>
-                ))}
+                {question.options.map((option) => {
+                  const answerExists =
+                    answers[index] && answers[index].includes(option);
+                  return (
+                    <li key={option}>
+                      {option}: {answerExists ? "Yes" : "No"}
+                      <br />
+                      {answerExists
+                        ? checkbox_suggestions[option]
+                        : checkbox_unchecked_suggestions[option]}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           );

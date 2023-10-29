@@ -23,6 +23,10 @@ export const suggestions_map = {
     Somewhat:
       "While it's a start, it’s essential to solidify your system for managing finances. Consider using accounting software or seeking professional help.",
   },
+  "Have you chosen a business name?": {
+    Yes: "Fantastic! A unique business name can set you apart and make you memorable to potential clients.",
+    No: "Take some time to brainstorm a name that represents you and your services well. Remember, a unique and professional name can help attract potential clients.",
+  },
   "Are you prepared for client interviews and contract negotiations?": {
     Yes: "Great! Being prepared will help you secure favorable contracts and build positive client relationships.",
     No: "Practice common interview questions, and learn the basics of contract negotiation to ensure fair terms and clear project scopes.",
@@ -55,6 +59,7 @@ export const getJsKnowledgeSuggestion = (value) => {
         "Deepen Your Knowledge: Consider intermediate courses on Udemy, Pluralsight, or Treehouse.",
         "Practice Coding: Platforms like LeetCode, HackerRank, and Codewars offer challenges that can enhance your problem-solving skills.",
         "Join Forums: Engage with communities on Stack Overflow, Reddit's r/javascript, and other forums to learn from discussions and ask questions.",
+        "Consider Bootcamps: Institutions like Technigo offer coding bootcamps that can provide intensive training and speed up your learning curve.",
       ],
     };
   } else if (value >= 7 && value <= 8) {
@@ -75,17 +80,12 @@ export const getJsKnowledgeSuggestion = (value) => {
         "Networking: Attend conferences, webinars, or local meetups (like JSConf, NodeConf) to network with fellow experts and learn about the latest trends and innovations.",
       ],
     };
+  } else {
+    return {
+      level: "Unspecified",
+      suggestions: ["Please input a valid knowledge level between 1 and 10."],
+    };
   }
-
-  return {
-    level: "Undefined Level",
-    suggestions: [
-      "Regardless of their level, continuous learning and practice are key.",
-      "Additional Resources: Books such as 'Eloquent JavaScript' by Marijn Haverbeke, 'JavaScript: The Good Parts' by Douglas Crockford, and 'JavaScript: The Definitive Guide' by David Flanagan are great resources.",
-      "Blogs and News: Sites like CSS-Tricks, Smashing Magazine, and the David Walsh Blog provide regular insights and updates.",
-      "Official Documentation: Always refer back to the MDN documentation as it's one of the most comprehensive resources available.",
-    ],
-  };
 };
 
 export const checkbox_suggestions = {
@@ -97,6 +97,8 @@ export const checkbox_suggestions = {
     "This is a big step towards your freelancing career. Ensure to have a smooth transition plan.",
   "Strategy for projects":
     "Excellent! A well-thought-out strategy will keep a steady stream of projects coming in.",
+  "Setup a business account":
+    "Smart move! Keeping your business finances separate makes accounting and tax time much easier.",
 };
 
 export const checkbox_unchecked_suggestions = {
@@ -108,4 +110,6 @@ export const checkbox_unchecked_suggestions = {
     "Ensure you have a solid financial cushion and a clear plan before transitioning to full-time freelancing.",
   "Strategy for projects":
     "Develop a strategy by identifying platforms to find projects, networking, and building a strong online presence showcasing your JavaScript skills.",
+  "Setup a business account":
+    "Consider setting up a business account. It will help you manage your finances, build business credit, and keep your personal and business expenses separate.",
 };

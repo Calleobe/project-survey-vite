@@ -37,8 +37,9 @@ const questions = [
     options: ["Yes", "No", "Somewhat"],
   },
   {
-    type: "text",
-    text: "Have you chosen a business name and set up a business account? (Please specify the name)",
+    type: "radio",
+    text: "Have you chosen a business name?",
+    options: ["Yes", "No"],
   },
   {
     type: "checkbox",
@@ -48,6 +49,7 @@ const questions = [
       "Aware of tax obligations",
       "Resignation ready",
       "Strategy for projects",
+      "Setup a business account",
     ],
   },
   {
@@ -90,10 +92,33 @@ export const SurveyApp = () => {
   };
 
   const canProceed = (questionIndex) => {
-    return isAnswered(questionIndex) || questionIndex === totalQuestions - 1;
+    if (questionIndex >= totalQuestions) {
+      return false; // Return false when we are out of bounds
+    }
+
+    // If it's the last question (newsletter), and it has been answered, allow proceeding
+    if (questionIndex === totalQuestions - 1 && isAnswered(questionIndex)) {
+      return true;
+    }
+
+    // For checkbox questions, always allow proceeding
+    if (questions[questionIndex].type === "checkbox") {
+      return true;
+    }
+
+    return isAnswered(questionIndex);
   };
 
   const handleNext = () => {
+    // Ensure the current section corresponds to a valid question
+    if (section < totalQuestions) {
+      // Check if the current question is of type 'checkbox'
+      if (questions[section].type === "checkbox") {
+        // Always consider it answered and update the set
+        setAnsweredQuestions((prev) => new Set([...prev, section]));
+      }
+    }
+
     if (canProceed(section)) {
       setSection((prev) => prev + 1);
     }
@@ -108,10 +133,7 @@ export const SurveyApp = () => {
   return (
     <div className="SurveyContainer">
       <Header />
-      <Progress
-        current={answeredQuestions.size}
-        total={questions.length}
-      />
+      <Progress current={answeredQuestions.size} total={questions.length} />
       {questions.map((question, index) => (
         <div
           key={index}
@@ -158,7 +180,7 @@ export const SurveyApp = () => {
               <NewsletterQuestion
                 questionText={question.text}
                 answer={answers[index]}
-                emailProp={answers[index + "_email"]} // Pass email as a prop
+                //emailProp={answers[index + "_email"]} // Pass email as a prop
                 onAnswerChange={(selection) => {
                   handleAnswerChange(index, selection);
                   // Reset email answer when switching to "No"
