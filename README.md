@@ -1,37 +1,15 @@
-<h1 align="center">
-  <a href="">
-    <img src="/src/assets/survey.svg" alt="Project Banner Image">
-  </a>
-</h1>
-
 # Survey Project
 
-Replace this readme with your own information about your project.
+Survey Project, PROJECT FIVE, by C. Öberg & F. Cassisa
 
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+We made a Survey to check the readiness of future freelancer WebDev. By replying questions, we provide at the end not only a Summary but tips based on which replies they have given.
 
-## Getting Started with the Project
-
-### Dependency Installation & Startup Development Server
-
-Once cloned, navigate to the project's root directory and this project uses npm (Node Package Manager) to manage its dependencies.
-
-The command below is a combination of installing dependencies, opening up the project on VS Code and it will run a development server on your terminal.
-
-```bash
-npm i && code . && npm run dev
-```
+This project has been tough on the logic aspect. There are different components passing data and logic that is intertwined among different elements.
 
 ### The Problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+After deciding what should have the Survey be based on, we structured the initial part together. Then we worked adding complexity and elements to structure more and more the Survey towards the stretched goals. We branched out when needed. Some difficulties appeared when many variables in the logic have been added. If we had had more time, we would have maybe refactored better and defined what would be our end features in order to have a better plan from the beginning.
 
 ### View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
-
-## Instructions
-
-<a href="instructions.md">
-   See instructions of this project
-  </a>
+Link to the project:
