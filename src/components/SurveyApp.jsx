@@ -71,7 +71,6 @@ export const SurveyApp = () => {
   const [answers, setAnswers] = useState({});
   const [answeredQuestions, setAnsweredQuestions] = useState(new Set());
   const totalQuestions = questions.length;
-  const [email, setEmail] = useState(""); // Initialize email state
 
   const handleAnswerChange = (index, answer) => {
     setAnswers((prev) => ({

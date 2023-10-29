@@ -68,9 +68,11 @@ export const NewsletterQuestion = ({
         </label>
       </div>
       {answer === "Yes" && !emailState.isSubmitted && (
-        <div>
-          <label className="EmailLabel">
-            Enter your email:
+        <div className="EmailLabel">
+          <label>
+            Enter your Email:
+          </label>
+          <div>
             <input
               type="text"
               value={emailState.email}
@@ -78,7 +80,6 @@ export const NewsletterQuestion = ({
               placeholder="example@email.com"
               className="InputEmail"
             />
-          </label>
           <button
             onClick={handleSubmission}
             disabled={!emailState.isEmailValid || emailState.email === ""}
@@ -87,6 +88,7 @@ export const NewsletterQuestion = ({
           >
             Submit
           </button>
+          </div>
           {!emailState.isEmailValid && (
             <p style={{ color: "red", marginLeft: "5px" }}>Please enter a valid email address.</p>
           )}
