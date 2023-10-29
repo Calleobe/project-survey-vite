@@ -103,6 +103,14 @@ div.QuestionContainer p {
   font-size: 14px;
 }
 
+.EmailInput {
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 5px;
+  outline: none;
+  width: 200px;
+};
 
 /* Add responsive styles for smaller screens */
 @media (max-width: 600px) {

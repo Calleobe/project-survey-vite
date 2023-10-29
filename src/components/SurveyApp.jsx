@@ -11,7 +11,6 @@ import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import "../styles/SurveyApp.css";
 
-
 const questions = [
   {
     type: "range",
@@ -70,13 +69,20 @@ const questions = [
 export const SurveyApp = () => {
   const [section, setSection] = useState(0);
   const [answers, setAnswers] = useState({});
+  const [answeredQuestions, setAnsweredQuestions] = useState(new Set());
   const totalQuestions = questions.length;
+  const [email, setEmail] = useState(""); // Initialize email state
 
   const handleAnswerChange = (index, answer) => {
     setAnswers((prev) => ({
       ...prev,
       [index]: answer,
     }));
+
+    // Track answered questions in the Set
+    if (answer !== undefined && !answeredQuestions.has(index)) {
+      setAnsweredQuestions(new Set(answeredQuestions).add(index));
+    }
   };
 
   const isAnswered = (questionIndex) => {
@@ -103,7 +109,7 @@ export const SurveyApp = () => {
     <div className="SurveyContainer">
       <Header />
       <Progress
-        current={Object.values(answers).filter(Boolean).length}
+        current={answeredQuestions.size}
         total={questions.length}
       />
       {questions.map((question, index) => (
@@ -152,11 +158,17 @@ export const SurveyApp = () => {
               <NewsletterQuestion
                 questionText={question.text}
                 answer={answers[index]}
+                emailProp={answers[index + "_email"]} // Pass email as a prop
                 onAnswerChange={(selection) => {
                   handleAnswerChange(index, selection);
-                  if (selection === "Yes") {
-                    handleAnswerChange(index + "_email", email);
+                  // Reset email answer when switching to "No"
+                  if (selection === "No") {
+                    handleAnswerChange(index + "_email", undefined);
                   }
+                }}
+                storedEmail={answers[index + "_email"]}
+                onEmailChange={(updatedEmail) => {
+                  handleAnswerChange(index + "_email", updatedEmail);
                 }}
               />
             )}

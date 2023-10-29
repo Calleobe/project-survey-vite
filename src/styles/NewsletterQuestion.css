@@ -1,0 +1,14 @@
+.EmailLabel {
+    margin-left: 5px;
+}
+
+.InputEmail {
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.SubmitButton {
+    margin-left: 10px;
+}
